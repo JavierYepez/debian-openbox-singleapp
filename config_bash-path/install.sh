@@ -11,7 +11,7 @@ base_dir="$(dirname "$(readlink -f "$0")")"
 
 # Copy users config
 echo -e "\e[1mSetting configs to all users...\e[0m"
-for d in  /home/*/  /etc/skel/  /root; do
+for d in  /home/*/ ; do
 	[ "$(dirname "$d")" = "/home" ] && ! id "$(basename "$d")" &>/dev/null && continue	# Skip dirs that no are homes 
     
 	cp -v "$base_dir/profile" "$d/.profile" && chown -R $(stat "$d" -c %u:%g) "$d/.profile"
