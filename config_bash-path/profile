@@ -53,8 +53,3 @@ if [ "$TERM" = "linux" ]; then
     printf "\e]PFffffff" # color15
 #   clear # removes artefacts but also removes /etc/{issue,motd}
 fi
-
-# Start X11 env at login 
-if [ -z "$DISPLAY" ] && [ "$XDG_VTNR" = 1 ]; then
-  exec startx &>/dev/null
-fi

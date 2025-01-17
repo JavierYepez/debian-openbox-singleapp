@@ -16,4 +16,5 @@ for d in  /home/*/ ; do
     
 	cp -v "$base_dir/profile" "$d/.profile" && chown -R $(stat "$d" -c %u:%g) "$d/.profile"
 	cp -v "$base_dir/xsessionrc" "$d/.xsessionrc" && chown -R $(stat "$d" -c %u:%g) "$d/.xsessionrc"
+	cp -v "$base_dir/bash_profile" "$d/.bash_profile" && chown -R $(stat "$d" -c %u:%g) "$d/.bash_profile"
 done
