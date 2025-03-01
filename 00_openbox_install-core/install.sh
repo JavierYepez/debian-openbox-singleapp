@@ -12,16 +12,16 @@ base_dir="$(dirname "$(readlink -f "$0")")"
 # Install packages
 echo -e "\e[1mInstalling packages...\e[0m"
 [ "$(find /var/cache/apt/pkgcache.bin -mtime 0 2>/dev/null)" ] || apt-get update  
-apt-get install -y openbox obconf xinit arandr xserver-xorg x11-xserver-utils xinit 
+apt-get install -y openbox obconf xinit arandr xserver-xorg x11-xserver-utils xinit gdm3 gnome-shell
 apt-get install -y network-manager network-manager-gnome 
 
 # Configure xinit
-echo -e "\e[1mSetting xinit configs to all users...\e[0m"
-for d in  /etc/skel/  /root  /home/*/; do
-	[ "$(dirname "$d")" = "/home" ] && ! id "$(basename "$d")" &>/dev/null && continue	# Skip dirs that no are homes 
+# echo -e "\e[1mSetting xinit configs to all users...\e[0m"
+# for d in  /etc/skel/  /root  /home/*/; do
+# 	[ "$(dirname "$d")" = "/home" ] && ! id "$(basename "$d")" &>/dev/null && continue	# Skip dirs that no are homes 
     
-	echo "exec openbox-session" > "$d/.xinitrc"
-done
+# 	echo "exec openbox-session" > "$d/.xinitrc"
+# done
 
 # Set as default
 echo -e "\e[1mSetting as default alternative...\e[0m"
