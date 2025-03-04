@@ -12,7 +12,7 @@ base_dir="$(dirname "$(readlink -f "$0")")"
 # Install packages
 echo -e "\e[1mInstalling packages...\e[0m"
 [ "$(find /var/cache/apt/pkgcache.bin -mtime 0 2>/dev/null)" ] || apt-get update  
-apt-get install -y openbox obconf xinit arandr xserver-xorg x11-xserver-utils xinit gdm3 gnome-shell
+apt-get install -y openbox obconf arandr xserver-xorg x11-xserver-utils xinit xinit-xsession gdm3
 apt-get install -y network-manager network-manager-gnome 
 
 # Configure xinit
