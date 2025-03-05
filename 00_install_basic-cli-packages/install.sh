@@ -13,6 +13,7 @@ echo -e "\e[1mInstalling packages...\e[0m"
 apt-get install -y vim zip unzip gnupg2 mlocate apt-transport-https \
                    curl build-essential ffmpeg libncurses5-dev \
                    libncursesw5-dev htop intel-media-va-driver-non-free \
-                   libva-drm2 libva-x11-2
+                   libva-drm2 libva-x11-2 lm-sensors
 apt-get install -y firmware-linux-nonfree
-  
+
+sensors-detect
