@@ -10,4 +10,9 @@
 # Install free packages
 echo -e "\e[1mInstalling packages...\e[0m"
 [ "$(find /var/cache/apt/pkgcache.bin -mtime 0 2>/dev/null)" ] || apt-get update  
-apt-get install -y vlc firmware-linux-nonfree
+apt-get install -y vlc chromium firmware-linux-nonfree
+
+# Add flag for chromium
+cat > /etc/chromium.d/ignore-gpu-blocklist <<EOF
+export CHROMIUM_FLAGS="\$CHROMIUM_FLAGS --ignore-gpu-blocklist"
+EOF
