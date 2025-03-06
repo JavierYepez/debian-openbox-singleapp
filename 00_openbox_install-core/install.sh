@@ -15,14 +15,18 @@ echo -e "\e[1mInstalling packages...\e[0m"
 apt-get install -y openbox obconf arandr xserver-xorg x11-xserver-utils xinit xinit-xsession gdm3
 apt-get install -y network-manager network-manager-gnome 
 
-# Configure xinit
-# echo -e "\e[1mSetting xinit configs to all users...\e[0m"
-# for d in  /etc/skel/  /root  /home/*/; do
-# 	[ "$(dirname "$d")" = "/home" ] && ! id "$(basename "$d")" &>/dev/null && continue	# Skip dirs that no are homes 
-    
-# 	echo "exec openbox-session" > "$d/.xinitrc"
-# done
+echo -e "\e[1mSetting configs to all users...\e[0m"
+for d in /etc/skel /home/*/ /root; do
+    [ "$(dirname "$d")" = "/home" ] && ! id "$(basename "$d")" &>/dev/null && continue	# Skip dirs that no are homes
 
+    # Create config folder if no exists
+	d="$d/.config/"; [ ! -d "$d" ] && mkdir -v "$d" && chown -R $(stat "$(dirname "$d")" -c %u:%g) "$d"
+
+    # Create config folders if no exists
+	d2="$d"
+	d="$d/openbox/";  [ ! -d "$d" ] && mkdir -v "$d" && chown -R $(stat "$(dirname "$d")" -c %u:%g) "$d"
+
+done
 # Set as default
 echo -e "\e[1mSetting as default alternative...\e[0m"
 update-alternatives --set x-session-manager /usr/bin/openbox-session
